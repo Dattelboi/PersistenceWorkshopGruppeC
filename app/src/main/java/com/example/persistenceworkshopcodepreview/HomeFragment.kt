@@ -33,8 +33,8 @@ class HomeFragment : Fragment() {
         stopTimerButton = rootView.findViewById(R.id.stop_timer_button)
         timerTextView = rootView.findViewById(R.id.timer_text_view)
 
-        timerSettingViewModel.defaultTimerTime.observe(viewLifecycleOwner) { time ->
-            defaultTimerTime = time
+        timerSettingViewModel.getTimerSetting { setting ->
+            defaultTimerTime = setting?.defaultTimerTime?.toInt() ?: 25
         }
 
         startTimerButton.setOnClickListener {

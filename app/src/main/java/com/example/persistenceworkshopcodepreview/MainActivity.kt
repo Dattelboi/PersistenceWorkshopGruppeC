@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavigationView.setupWithNavController(navController)
 
+        // Set up session button click listener
         binding.addSessionButton.setOnClickListener {
             val startTime = binding.startTime.text.toString()
             val endTime = binding.endTime.text.toString()
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
             pomodoroViewModel.insert(session)
         }
 
+        // Observe the sessions
         pomodoroViewModel.allSessions.observe(this, { sessions ->
             val sessionsText = sessions.joinToString(separator = "\n") { session ->
                 "ID: ${session.id}, Start: ${session.startTime}, End: ${session.endTime}"

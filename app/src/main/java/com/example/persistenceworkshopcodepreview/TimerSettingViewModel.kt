@@ -33,6 +33,27 @@ class TimerSettingViewModel(application: Application) : AndroidViewModel(applica
             repository.insertTimerSetting(timerSetting)
         }
     }
+
+    fun getTimerSetting(callback: (TimerSetting?) -> Unit) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val timerSetting = repository.getTimerSetting()
+            withContext(Dispatchers.Main) {
+                callback(timerSetting)
+            }
+        }
+    }
+
+    fun updateTimerSetting(newTimerTime: Int) {
+        saveTimerSetting(newTimerTime)
+    }
 }
 
-class TimerSettingViewModelFactory(private val application: Application) : ViewModelProvider.AndroidViewModelFactory(application)
+class TimerSettingViewModelFactory(private val application: Application) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(TimerSettingViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return TimerSettingViewModel(application) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
+}

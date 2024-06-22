@@ -12,8 +12,8 @@ import androidx.lifecycle.ViewModelProvider
 class SettingsFragment : Fragment() {
 
     private lateinit var timerSettingViewModel: TimerSettingViewModel
-    private lateinit var editTextTimerTime: EditText
-    private lateinit var buttonSave: Button
+    private lateinit var timerEditText: EditText
+    private lateinit var saveButton: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,17 +22,16 @@ class SettingsFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_settings, container, false)
 
         timerSettingViewModel = ViewModelProvider(this, TimerSettingViewModelFactory(requireActivity().application)).get(TimerSettingViewModel::class.java)
+        timerEditText = rootView.findViewById(R.id.edit_text_timer_time)
+        saveButton = rootView.findViewById(R.id.button_save)
 
-        editTextTimerTime = rootView.findViewById(R.id.edit_text_timer_time)
-        buttonSave = rootView.findViewById(R.id.button_save)
-
-        timerSettingViewModel.defaultTimerTime.observe(viewLifecycleOwner) { time ->
-            editTextTimerTime.setText(time.toString())
+        timerSettingViewModel.getTimerSetting { setting ->
+            timerEditText.setText(setting?.defaultTimerTime?.toString() ?: "25")
         }
 
-        buttonSave.setOnClickListener {
-            val newTimerTime = editTextTimerTime.text.toString().toInt()
-            timerSettingViewModel.saveTimerSetting(newTimerTime)
+        saveButton.setOnClickListener {
+            val newTime = timerEditText.text.toString().toIntOrNull() ?: 25
+            timerSettingViewModel.updateTimerSetting(newTime)
         }
 
         return rootView
