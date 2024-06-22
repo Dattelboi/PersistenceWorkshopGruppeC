@@ -1,0 +1,9 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SeekBarPreference
+        android:key="default_timer_time"
+        android:title="Default Timer Time"
+        android:summary="Set the default timer time in minutes"
+        android:defaultValue="25"
+        android:min="1"
+        android:max="60" />
+</PreferenceScreen>

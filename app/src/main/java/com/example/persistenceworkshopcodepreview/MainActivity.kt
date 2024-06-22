@@ -3,8 +3,10 @@ package com.example.persistenceworkshopcodepreview
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.example.persistenceworkshopcodepreview.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,6 +18,13 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Set up navigation
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        bottomNavigationView.setupWithNavController(navController)
+
         binding.addSessionButton.setOnClickListener {
             val startTime = binding.startTime.text.toString()
             val endTime = binding.endTime.text.toString()
@@ -23,7 +32,7 @@ class MainActivity : AppCompatActivity() {
             pomodoroViewModel.insert(session)
         }
 
-        pomodoroViewModel.allSessions.observe(this, Observer { sessions ->
+        pomodoroViewModel.allSessions.observe(this, { sessions ->
             val sessionsText = sessions.joinToString(separator = "\n") { session ->
                 "ID: ${session.id}, Start: ${session.startTime}, End: ${session.endTime}"
             }
@@ -31,4 +40,3 @@ class MainActivity : AppCompatActivity() {
         })
     }
 }
-
