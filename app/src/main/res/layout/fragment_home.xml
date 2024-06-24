@@ -1,39 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <data>
-        <!-- Fügen Sie hier ViewModel-Bindung hinzu, falls erforderlich -->
-    </data>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_alignParentTop="true"
         android:padding="16dp">
 
         <TextView
             android:id="@+id/timer_text_view"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="25:00"
-            android:textSize="48sp"
-            android:layout_gravity="center" />
+            android:gravity="center"
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/start_timer_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Start Timer"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp" />
+            android:text="Start Timer" />
 
         <Button
             android:id="@+id/stop_timer_button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Stop Timer"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
             android:visibility="gone" />
     </LinearLayout>
-</layout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/sessions_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sessions" />
+
+        <EditText
+            android:id="@+id/start_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Start Time" />
+
+        <EditText
+            android:id="@+id/end_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="End Time" />
+
+        <Button
+            android:id="@+id/add_session_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Session" />
+    </LinearLayout>
+
+</RelativeLayout>

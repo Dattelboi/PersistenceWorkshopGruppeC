@@ -16,49 +16,6 @@
         app:navGraph="@navigation/nav_graph"
         app:defaultNavHost="true" />
 
-    <EditText
-        android:id="@+id/start_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Start Time" />
-
-    <EditText
-        android:id="@+id/end_time"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="End Time" />
-
-    <Button
-        android:id="@+id/add_session_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Session" />
-
-    <TextView
-        android:id="@+id/sessions_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/start_timer_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Start Timer" />
-
-    <Button
-        android:id="@+id/stop_timer_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Stop Timer"
-        android:visibility="gone" />
-
-    <TextView
-        android:id="@+id/timer_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:text="00:00" />
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
